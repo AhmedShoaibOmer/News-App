@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">News App</string>
+    <string name="newest">newest</string>
+    <string name="refresh">Refresh</string>
+
+    <string name="network_error_message">Your Device Not Connected to the Internet</string>
+    <string name="network_error_title">Network Error</string>
+</resources>
