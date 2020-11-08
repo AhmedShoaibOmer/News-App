@@ -30,7 +30,7 @@ public class QueryUtils {
 
     static String createStringUrl() {
         Uri.Builder builder = new Uri.Builder();
-        builder.scheme("http")
+        builder.scheme("https")
                 .encodedAuthority("content.guardianapis.com")
                 .appendPath("search")
                 .appendQueryParameter("order-by", "newest")
@@ -38,8 +38,7 @@ public class QueryUtils {
                 .appendQueryParameter("show-tags", "contributor")
                 .appendQueryParameter("q", "Android")
                 .appendQueryParameter("api-key", API_KEY);
-        String url = builder.build().toString();
-        return url;
+        return builder.build().toString();
     }
 
     public static URL createUrl() {
@@ -129,17 +128,18 @@ public class QueryUtils {
                 date = formatDate(date);
                 String section = oneResult.getString("sectionName");
                 JSONArray tagsArray = oneResult.getJSONArray("tags");
-                String author = "";
+                StringBuilder author = new StringBuilder();
 
                 if (tagsArray.length() == 0) {
                     author = null;
                 } else {
                     for (int j = 0; j < tagsArray.length(); j++) {
                         JSONObject firstObject = tagsArray.getJSONObject(j);
-                        author += firstObject.getString("webTitle") + ". ";
+                        author.append(firstObject.getString("webTitle")).append(". ");
                     }
                 }
-                listOfNews.add(new NewsModel(section, webTitle, author, date, url));
+                String authorStr = author == null ? "" : author.toString();
+                listOfNews.add(new NewsModel(section, webTitle, authorStr, date, url));
             }
         } catch (JSONException e) {
             Log.e("Queryutils", "Error parsing JSON response", e);

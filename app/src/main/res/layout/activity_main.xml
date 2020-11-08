@@ -72,4 +72,15 @@
         android:text="@string/network_error_message"
         android:textSize="16sp"
         android:visibility="invisible" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/no_news_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:drawableTop="@drawable/ic_error"
+        android:text="@string/no_news_error_message"
+        android:textSize="16sp"
+        android:visibility="invisible" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
